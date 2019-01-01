@@ -1,7 +1,7 @@
 ﻿.idea/**
 __pycache__/**
 __pycache__
-
+drone_data/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

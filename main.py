@@ -1,6 +1,6 @@
 import sys
-from PyQt5.QtWidgets import (QApplication, QWidget, QToolTip, QPushButton)
-from PyQt5.QtGui import QFont
+from PyQt5.QtWidgets import (QApplication, QWidget, QHBoxLayout, QLabel)
+from PyQt5.QtGui import QPixmap
 
 
 class Example(QWidget):
@@ -11,25 +11,34 @@ class Example(QWidget):
         self.initUI()
 
     def initUI(self):
+        hbox = QHBoxLayout(self)
+        pixmap = QPixmap(r"drone_data/rgb.JPG")
 
-        QToolTip.setFont(QFont('SansSerif', 10))
-        self.setToolTip('This is a <b>QWidget</b> widget<br>HTML geht')
+        image_label = QLabel(self)
+        image_label.setPixmap(pixmap)
+        image_label.mousePressEvent = self.get_pixel
 
-        button = QPushButton('Button', self)
-        button.setToolTip('This is a <b>Pushbutton</b><br><i>HTML geht</i>')
-        button.resize(button.sizeHint())
-        button.move(50, 50)
+        hbox.addWidget(image_label)
+        self.setLayout(hbox)
 
-        self.setGeometry(300, 300, 300, 200)
-        self.setWindowTitle("ToolTips")
+        self.move(300, 200)
+        self.setWindowTitle('Dronen RGB')
         self.show()
+
+    def get_pixel(self, event):
+        x = event.pos().x()
+        y = event.pos().y()
+        print("\nselected coords\nx: %d - y: %d"%(x,y))
+        return x, y
+
+
+
 
 
 if __name__ == "__main__":
-    print(sys.argv)
+
     app = QApplication(sys.argv)
     ex = Example()
     sys.exit(app.exec_())
-
 
 print("Programm ENDE")
