@@ -5,6 +5,10 @@ from PyQt5.QtGui import QPixmap
 
 class Example(QWidget):
 
+    # todo: show to images in one screen
+    # todo: select corresponding pixels in both pictures
+    # todo: save corresponding pixel cooridnates in a list and export them to the main algorithm
+
     def __init__(self):
         super().__init__()
 
@@ -29,7 +33,7 @@ class Example(QWidget):
         x = event.pos().x()
         y = event.pos().y()
         print("\nselected coords\nx: %d - y: %d"%(x,y))
-        return x, y
+
 
 
 
